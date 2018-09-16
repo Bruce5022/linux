@@ -71,5 +71,31 @@ URL         : http://www.rabbitmq.com/
 Summary     : The RabbitMQ server
 Description :
 RabbitMQ is an open source multi-protocol messaging broker.
+[root@LAB05 softwares]# rpm -qip socat-1.7.3.2-5.el7.lux.x86_64.rpm
+警告：socat-1.7.3.2-5.el7.lux.x86_64.rpm: 头V4 DSA/SHA1 Signature, 密钥 ID 53e4e7a9: NOKEY
+Name        : socat
+Version     : 1.7.3.2
+Release     : 5.el7.lux
+Architecture: x86_64
+Install Date: (not installed)
+Group       : Applications/Internet
+Size        : 1077128
+License     : GPLv2
+Signature   : DSA/SHA1, 2017年06月23日 星期五 16时19分20秒, Key ID 388b4c7553e4e7a9
+Source RPM  : socat-1.7.3.2-5.el7.lux.src.rpm
+Build Date  : 2017年06月23日 星期五 16时19分19秒
+Build Host  : lux7.iotti.biz
+Relocations : (not relocatable)
+Packager    : Luigi Iotti
+Vendor      : Luigi Iotti http://www.iotti.biz/
+URL         : http://www.dest-unreach.org/socat
+Summary     : Bidirectional data relay between two data channels ('netcat++')
+Description :
+Socat is a relay for bidirectional data transfer between two independent data
+channels. Each of these data channels may be a file, pipe, device (serial line
+etc. or a pseudo terminal), a socket (UNIX, IP4, IP6 - raw, UDP, TCP), an
+SSL socket, proxy CONNECT connection, a file descriptor (stdin etc.), the GNU
+line editor (readline), a program, or a combination of two of these.
+[root@LAB05 softwares]# 
 
 yum命令没有查询,不管是rpm安装还是yum安装的软件,都能通过此命令查询
