@@ -46,8 +46,17 @@ rpm -q 包名
 -a all 所有的
 -i information 查询软件信息
 -p package 查询未安装包信息,此时必须是包全名
+-l list 列表
+-f file 文件
+-R requires 依赖性
 rpm -q 包名:查询包名是否安装
 rpm -qa 查询所有已经安装的rpm包
+rpm -ql 包名,查询已经安装的包的文件位置
+rpm -qpl 包全名,因为rpm包都是在出厂的时候,就定好了安装位置,所以,未安装的包也能看到所有文件将要安装的位置
+rpm -qf 系统文件名,查询系统文件属于哪个包
+rpm -qR 包名 ,通过这个命令,可以查看软件包安装的时候,将会依赖哪些包
+rpm -qRp 包全名,查询未安装的包的依赖性
+
 例子:
 [root@LAB05 ~]# rpm -q mysql
 未安装软件包 mysql 
@@ -97,5 +106,36 @@ etc. or a pseudo terminal), a socket (UNIX, IP4, IP6 - raw, UDP, TCP), an
 SSL socket, proxy CONNECT connection, a file descriptor (stdin etc.), the GNU
 line editor (readline), a program, or a combination of two of these.
 [root@LAB05 softwares]# 
+[root@LAB05 softwares]# rpm -qpl socat-1.7.3.2-5.el7.lux.x86_64.rpm
+警告：socat-1.7.3.2-5.el7.lux.x86_64.rpm: 头V4 DSA/SHA1 Signature, 密钥 ID 53e4e7a9: NOKEY
+/usr/bin/filan
+/usr/bin/procan
+/usr/bin/socat
+/usr/share/doc/socat-1.7.3.2
+/usr/share/doc/socat-1.7.3.2/BUGREPORTS
+/usr/share/doc/socat-1.7.3.2/CHANGES
+/usr/share/doc/socat-1.7.3.2/COPYING
+/usr/share/doc/socat-1.7.3.2/COPYING.OpenSSL
+/usr/share/doc/socat-1.7.3.2/DEVELOPMENT
+/usr/share/doc/socat-1.7.3.2/EXAMPLES
+/usr/share/doc/socat-1.7.3.2/FAQ
+/usr/share/doc/socat-1.7.3.2/PORTING
+/usr/share/doc/socat-1.7.3.2/README
+/usr/share/doc/socat-1.7.3.2/SECURITY
+/usr/share/doc/socat-1.7.3.2/daemon.sh
+/usr/share/doc/socat-1.7.3.2/ftp.sh
+/usr/share/doc/socat-1.7.3.2/gatherinfo.sh
+/usr/share/doc/socat-1.7.3.2/mail.sh
+/usr/share/doc/socat-1.7.3.2/proxy.sh
+/usr/share/doc/socat-1.7.3.2/proxyecho.sh
+/usr/share/doc/socat-1.7.3.2/readline-test.sh
+/usr/share/doc/socat-1.7.3.2/readline.sh
+/usr/share/doc/socat-1.7.3.2/socks4a-echo.sh
+/usr/share/doc/socat-1.7.3.2/socks4echo.sh
+/usr/share/doc/socat-1.7.3.2/test.sh
+/usr/share/man/man1/socat.1.gz
+[root@LAB05 softwares]# 
+[root@LAB05 softwares]# rpm -qf /usr/share/doc/socat-1.7.3.2/mail.sh
+socat-1.7.3.2-5.el7.lux.x86_64
 
 yum命令没有查询,不管是rpm安装还是yum安装的软件,都能通过此命令查询
