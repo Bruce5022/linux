@@ -1,0 +1,75 @@
+一.rpm包命名原则
+httpd-2.4.6-80.el7.centos.x86_64.rpm
+httpd 软件包名
+2.4.6 软件包版本
+80 软件发布的次数
+el7.centos 适合的Linux平台
+x86_64 适合的平台,如果是noarch,这种是任何平台都能安装
+rpm 包扩展名
+二.rpm包依赖性
+树形依赖
+环形依赖
+模块依赖:
+如果装软件出现.so.6这类依赖报错,说明这个被依赖的文件是库依赖,需要安装这个软件所在的软件
+怎么知道在这个软件在哪个软件里呢?
+模块依赖查询网www.fpmfind.net
+
+正是这类依赖的问题的存在,rpm发现并给出了一个方案就是yum在线管理?
+准备一个网站,存放所有的rpm包,作为在线服务器用,yum在线管理不管是什么依赖,都不用用户来解决,都从官网下载下来,所有依赖全部解决.
+yum源除了官网,本地,磁盘都能作为yum源
+
+三.包全名和包名
+包全名没有安装的需要包全名
+包名已经安装的使用包名包名是搜索/var/lib/rpm/中的数据库
+
+四.rpm安装
+rpm -ivh 包全名
+-i install 安装
+-v verbose 显示详细信息
+-h hash 显示进度
+--nodeps 不检测依赖性(建议不用,如果有依赖,没安装,装上的也用不了)
+
+五.rpm包升级
+rpm -Uvh 包全名
+-U upgrade 升级
+
+六.卸载
+rpm -e 包名
+-e erase 下载
+--nodeps 不检查依赖性
+那些a->b->c这类的依赖,装了c再装b再装a卸载的时候,rpm -e a ->b->c
+
+七.查询
+1.查询是否安装
+rpm -q 包名
+-q 查询
+-a all 所有的
+-i information 查询软件信息
+-p package 查询未安装包信息,此时必须是包全名
+rpm -q 包名:查询包名是否安装
+rpm -qa 查询所有已经安装的rpm包
+例子:
+[root@LAB05 ~]# rpm -q mysql
+未安装软件包 mysql 
+[root@LAB05 ~]# rpm -q rabbitmq-server 
+rabbitmq-server-3.6.15-1.el7.noarch
+[root@LAB05 softwares]# rpm -qi rabbitmq-server 
+Name        : rabbitmq-server
+Version     : 3.6.15
+Release     : 1.el7
+Architecture: noarch
+Install Date: 2018年09月16日 星期日 09时16分37秒
+Group       : Development/Libraries
+Size        : 5845527
+License     : MPLv1.1 and MIT and ASL 2.0 and BSD
+Signature   : RSA/SHA1, 2018年01月17日 星期三 22时18分05秒, Key ID 6b73a36e6026dfca
+Source RPM  : rabbitmq-server-3.6.15-1.el7.src.rpm
+Build Date  : 2018年01月17日 星期三 22时18分04秒
+Build Host  : 07e0ee59-32af-43c4-514b-d6b945dbed89
+Relocations : (not relocatable)
+URL         : http://www.rabbitmq.com/
+Summary     : The RabbitMQ server
+Description :
+RabbitMQ is an open source multi-protocol messaging broker.
+
+yum命令没有查询,不管是rpm安装还是yum安装的软件,都能通过此命令查询
